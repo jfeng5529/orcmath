@@ -17,14 +17,15 @@ public class catalogMaker {
 	}
 
 	public static void main(String[] args) {
-		
-
+		catalogMaker list =new catalogMaker();
+		System.out.println(list.getCSVConetnt());
 	}
 	public String getCSVConetnt() {
 		String data ="";
 		for(food f: foodList) {
 			data=data+f+"\n";
 		}
+		return data;
 	}
 
 }
