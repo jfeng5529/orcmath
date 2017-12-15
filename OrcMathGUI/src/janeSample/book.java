@@ -22,6 +22,7 @@ public class book extends Component {
 	 */
 	public book() {
 		super(40, 40, 100, 100);
+		update();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,8 +31,8 @@ public class book extends Component {
 	 */
 	@Override
 	public void update(Graphics2D g) {
-		g.setColor(Color.BLUE);
-		g.drawRect(0, 0, getWidth(), getHeight());
+		g.setColor(Color.MAGENTA);
+		g.fillRect(0, 0, getWidth(), getHeight());
 
 	}
 
