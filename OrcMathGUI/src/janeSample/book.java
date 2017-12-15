@@ -6,13 +6,14 @@ package janeSample;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.Component;
 
 /**
  * @author BT_1N3_02
  *
  */
-public class book extends Component {
+public class book extends AnimatedComponent {
 
 	/**
 	 * @param x
@@ -21,7 +22,10 @@ public class book extends Component {
 	 * @param h
 	 */
 	public book() {
-		super(40, 40, 100, 100);
+		super(40, 40, 260, 260);
+		addSequence("resources/myPic.png", 160, 0, 0, 251, 251, 6);
+		Thread animation= new Thread(this);
+		animation.start();
 		update();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,8 +35,7 @@ public class book extends Component {
 	 */
 	@Override
 	public void update(Graphics2D g) {
-		g.setColor(Color.MAGENTA);
-		g.fillRect(0, 0, getWidth(), getHeight());
+		super.update(g);
 
 	}
 
