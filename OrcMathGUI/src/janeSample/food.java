@@ -19,7 +19,7 @@ public class food extends Component {
 		this.type = type;
 		this.calories =calories;
 		this.isVegan = isVegan;
-		this.imgAdd = "resources/iceCream.jpg";
+		this.imgAdd = imgAdd;
 		// TODO Auto-generated constructor stub
 	}
 
