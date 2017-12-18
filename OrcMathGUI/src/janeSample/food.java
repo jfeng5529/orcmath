@@ -8,18 +8,16 @@ import guiTeacher.components.Component;
 public class food extends Component {
 	private String name;
 	private String type;
-	private int calories;
-	private boolean isVegan;
+	private String flavor;
 	private String imgAdd;
 
 	
-	public food(String name, String type, int calories, boolean isVegan, String imgAdd ) {
+	public food(String name, String type, String flavor, String imgAdd ) {
 		super(40, 40, 260, 260);
 		this.name = name;
 		this.type = type;
-		this.calories =calories;
-		this.isVegan = isVegan;
-		this.imgAdd = imgAdd;
+		this.flavor =flavor;
+		this.imgAdd = "resources/iceCream.jpg";
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,11 +28,7 @@ public class food extends Component {
 	}
 	
 	public String toString() {
-		String vegan;
-		if(isVegan) vegan = "vegan";
-		else
-			vegan = "not vegan";
-		return name +","+type+","+calories+","+vegan;
+		return name +","+type+","+flavor;
 		
 	}
 
