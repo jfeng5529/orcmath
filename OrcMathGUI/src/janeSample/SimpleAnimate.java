@@ -13,7 +13,7 @@ import guiTeacher.components.Component;
  * @author BT_1N3_02
  *
  */
-public class book extends AnimatedComponent {
+public class SimpleAnimate extends AnimatedComponent {
 
 	/**
 	 * @param x
@@ -21,7 +21,7 @@ public class book extends AnimatedComponent {
 	 * @param w
 	 * @param h
 	 */
-	public book() {
+	public SimpleAnimate() {
 		super(40, 40, 260, 260);
 		addSequence("resources/myPic.png", 160, 0, 0, 251, 251, 6);
 		Thread animation= new Thread(this);

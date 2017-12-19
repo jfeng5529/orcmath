@@ -20,7 +20,7 @@ import guiTeacher.interfaces.KeyedComponent;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FileLoader;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-import janeSample.book;
+import janeSample.SimpleAnimate;
 
 public class Sampler extends GUIApplication implements FileRequester{
 
@@ -127,7 +127,7 @@ public class Sampler extends GUIApplication implements FileRequester{
 				}
 			}); 
 			viewObjects.add(cb);
-			viewObjects.add(new book());
+			viewObjects.add(new SimpleAnimate());
 			
 			
 				
