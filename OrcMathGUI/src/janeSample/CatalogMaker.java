@@ -41,7 +41,7 @@ public class CatalogMaker {
 		if(s.equalsIgnoreCase("yes"))
 			startAdding();
 		else
-			System.out.println("Thank you. Item saved.");
+			System.out.println("Thank you. Items saved.");
 	}
 
 	private void creatItem(String[] parameter) {
