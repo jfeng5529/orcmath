@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class FileSaved {
 
-	private static ArrayList<food> foodList;
+	private static ArrayList<Food> foodList;
 	private static String[] items;
 	
 	public FileSaved() {

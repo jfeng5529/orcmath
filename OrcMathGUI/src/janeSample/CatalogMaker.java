@@ -1,20 +1,19 @@
 package janeSample;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import guiPlayer.Book;
+
 public class CatalogMaker {
 
-	private static ArrayList<food> foodList;
+	private  ArrayList<Food> foodList;
 	private static String[] items;
 	
 	public CatalogMaker() {
-		foodList = new ArrayList<food>();
-		foodList.add(new food ("Ice Cream", "Dessert", "sweet", "resources/iceCream.jpg"));
-		foodList.add(new food ("Cupcakes", "Dessert", "sweet",  "resources/cupcake.jpg"));
-		foodList.add(new food ("French Fries", "Side Dish", "savory", "resources/fries.jpg"));
-		foodList.add(new food ("Fruit Salad", "Side Dish", "sweet","resources/salad.jpg"));
-		foodList.add(new food ("Sushi", "Main Course", "savory", "resources/sushi.jpg"));
+		foodList = new ArrayList<Food>();
 		String[] temp= {"name of the food", "type of the food", "the flavor of the food"};
 		items = temp;
 	}
@@ -35,17 +34,17 @@ public class CatalogMaker {
 		checkInput(parameter , field, s);
 		field++;
 		}
-		creatItem(parameter);
+		addItem(parameter);
 		System.out.println("Do you want to add more items?");
 		s=in.nextLine();
-		if(s.equalsIgnoreCase("yes"))
+		if(s.contains("yes"))
 			startAdding();
 		else
-			System.out.println("Thank you. Items saved.");
+			save();
 	}
 
-	private void creatItem(String[] parameter) {
-		foodList.add(new food (parameter[0], parameter[1], parameter[2], "resources/sushi.jpg"));
+	public void addItem(String[] parameter) {
+		foodList.add(new Food (parameter[0], parameter[1], parameter[2]));
 		
 		
 	}
@@ -57,10 +56,29 @@ public class CatalogMaker {
 
 	public String getCSVConetnt() {
 		String data ="";
-		for(food f: foodList) {
+		for(Food f: foodList) {
 			data=data+f+"\n";
 		}
 		return data;
+	}
+
+	public void save() {
+		try{    
+			FileWriter fw=new FileWriter("foodCatalog.csv");
+			for(Food b: foodList){
+				fw.write(b+"\n");    	
+			}
+
+			fw.close();    
+			System.out.println("Success! File \"foodCatalog.csv\" saved!");
+		}catch(IOException e){
+			System.out.println("An IOException was thrown. \nCheck to see that the directory where you tried to save the file actually exists.");
+		}
+	}
+
+	public void addItem(Food f) {
+		foodList.add(f);
+		
 	}
 
 }
