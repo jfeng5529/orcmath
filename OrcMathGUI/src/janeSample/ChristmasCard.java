@@ -18,7 +18,7 @@ public class ChristmasCard extends GUIApplication {
 	public void initScreen() {
 		z = new ChristmasScreen2(getWidth(), getHeight());
 		s = new ChristmasScreen(getWidth(), getHeight());
-		setScreen(s);
+		setScreen(z);
 	}
 
 	public static void main(String[] args) {
