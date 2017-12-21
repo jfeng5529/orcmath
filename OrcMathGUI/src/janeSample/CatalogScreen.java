@@ -17,6 +17,7 @@ public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 	private TextField typeField;
 	private TextField flavorField;
 	private TextArea text;
+	private TextArea list;
 	private Button addButton;
 	private Button saveButton;
 	private Button deleteButton;
@@ -38,6 +39,8 @@ public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 		viewObjects.add(flavorField);
 		text= new TextArea(320, 20, 200, 30, "This is where text goes");
 		viewObjects.add(text);
+		list = new TextArea(320, 300, 100, 100, "Food List");
+		viewObjects.add(list);
 		addButton = new Button(280, 250, 40, 40, "add", new Action() {
 			
 			@Override
@@ -81,9 +84,9 @@ public class CatalogScreen extends FullFunctionScreen implements FileRequester {
 	}
 
 	protected void addClick(String s) {
-		Food f = new Food(descriptionField.getText(), typeField.getText(),flavorField.getText());
-		catalog.addItem(f);
+		catalog.addItem(new Food(descriptionField.getText(), typeField.getText(),flavorField.getText()));
 		text.setText(s);
+		list.setText(catalog.getCSVConetnt());
 		descriptionField.setText("");
 		typeField.setText("");
 		flavorField.setText("");
