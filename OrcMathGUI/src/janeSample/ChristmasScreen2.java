@@ -12,6 +12,7 @@ public class ChristmasScreen2 extends FullFunctionScreen {
 	private AnimatedComponent deer;
 	private Button nextButton;
 	private Visible back;
+	private Graphic logo;
 	public ChristmasScreen2(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -21,9 +22,11 @@ public class ChristmasScreen2 extends FullFunctionScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		back = new Graphic(0, 0,800,800, "resources/back2.jpg");
 		viewObjects.add(back);
+		logo = new Graphic(10,0, 300,300,"resources/logo2.png");
+		viewObjects.add(logo);
 		text= new TextArea(20, 20, 110, 110, "HI");
 		viewObjects.add(text);
-		deer= new AnimatedComponent(250, 200, 380, 340);
+		deer= new AnimatedComponent(400, 300, 280, 240);
 		ArrayList<Integer> times = new ArrayList<Integer>();
 		times.add(2000);
 		times.add(100);
