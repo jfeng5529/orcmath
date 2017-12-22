@@ -18,11 +18,11 @@ public class ChristmasCard extends GUIApplication {
 	public void initScreen() {
 		z = new ChristmasScreen2(getWidth(), getHeight());
 		s = new ChristmasScreen(getWidth(), getHeight());
-		setScreen(z);
+		setScreen(s);
 	}
 
 	public static void main(String[] args) {
-		ChristmasCard sample =new ChristmasCard(800, 600);
+		sample =new ChristmasCard(800, 600);
 		Thread go = new Thread(sample);
 		go.start();
 
