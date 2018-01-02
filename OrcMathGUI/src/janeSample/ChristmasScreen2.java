@@ -1,5 +1,6 @@
 package janeSample;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ChristmasScreen2 extends FullFunctionScreen {
 		Thread run = new Thread(deer);
 		run.start();
 		viewObjects.add(deer);
-		nextButton = new Button(490, 500, 70, 70, "Close Me!", new Action() {
+		nextButton = new Button(490, 520, 70, 70, "Close Me!", new Action() {
 			
 			@Override
 			public void act() {
@@ -44,6 +45,9 @@ public class ChristmasScreen2 extends FullFunctionScreen {
 				
 			}
 		});
+		nextButton.setForeground(Color.white);
+
+		nextButton.update();
 		viewObjects.add(nextButton);
 
 	}
