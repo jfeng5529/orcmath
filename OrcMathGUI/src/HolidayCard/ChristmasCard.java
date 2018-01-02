@@ -1,4 +1,4 @@
-package janeSample;
+package HolidayCard;
 
 import guiTeacher.GUIApplication;
 import guiTeacher.components.AnimatedComponent;

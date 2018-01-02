@@ -1,4 +1,4 @@
-package janeSample;
+package HolidayCard;
 
 import java.util.List;
 

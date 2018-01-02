@@ -1,4 +1,4 @@
-package janeSample;
+package HolidayCard;
 
 import java.awt.Color;
 import java.util.ArrayList;
