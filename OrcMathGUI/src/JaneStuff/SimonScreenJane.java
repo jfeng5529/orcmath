@@ -1,12 +1,12 @@
 package JaneStuff;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
-import javafx.scene.paint.Color;
 
 public class SimonScreenJane extends ClickableScreen implements Runnable{
 
@@ -68,14 +68,115 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	private void addButtons() {
 		int numOfButtons = 5;
 		button = new ButtonInterfaceJane[numOfButtons];
-		Color[] buttonColors= new Color[];
-		
+		Color[] buttonColors = {Color.green, Color.cyan, Color.magenta, Color.yellow, Color.orange};
+		for(int i=0; i<numOfButtons; i++) {
+			final ButtonInterfaceJane b = getAButton();
+			button[i] = b;
+			b.setColor(buttonColors[i]);
+			b.setX(i+15);
+			b.setY(i);//make a circle
+			b.setAction(new Action(){
+
+				public void act(){
+					if(acceptingInput) {
+						Thread blink = new Thread(new Runnable(){
+
+							public void run(){
+								b.highlight();
+								try {
+									Thread.sleep(800);
+									} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+									}
+									b.dim();
+							}
+
+						});
+						blink.start();
+						if( b == sequence.get(sequenceIndex).getButton()) {
+							sequenceIndex++;
+						}
+						else
+							progress.gameOver();
+					}
+					if(sequenceIndex == sequence.size()){ 
+					    Thread nextRound = new Thread(SimonScreenJane.this); 
+					    nextRound.start(); 
+					}
+				}
+
+			});
+		}
 	}
 
+	/**
+	Placeholder until partner finishes implementation of ButtonInterface
+	*/
+	private ButtonInterfaceJane getAButton() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	private void changeText(String s) {
+		Thread blink = new Thread(new Runnable(){
+
+			public void run(){
+				label.setText(s);
+				try {
+					Thread.sleep(1000);
+					} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					}
+			}
+
+		});
+		blink.start();
+	}
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		label.setText("");
+	    nextRound();
 		
 	}
 
+	private void nextRound() {
+		acceptingInput=false;
+		roundNumber++;
+		sequence.add(randomMove());
+		progress.setRound(roundNumber);
+		progress.setSequenceSize(sequence.size());
+		changeText("Simon's turn");
+		changeText("");
+		playSequence();
+		changeText("Your Turn");
+		acceptingInput=true;
+		sequenceIndex=0;
+	}
+	
+	private void playSequence() {
+		ButtonInterfaceJane b=null;
+		for(int i=0; i<sequence.size(); i++) {
+			if(b!= null) {
+				b.dim();
+				b=sequence.get(i).getButton();
+				b.highlight();
+				int sleepTime = Math.abs((800-6*roundNumber)+1);
+				Thread blink = new Thread(new Runnable(){
+
+					public void run(){
+						try {
+							Thread.sleep(sleepTime);
+							} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+							}
+					}
+
+				});
+				blink.start();
+			}
+		}
+		b.dim();
+	}
 }
