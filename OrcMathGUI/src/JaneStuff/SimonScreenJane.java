@@ -66,15 +66,15 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	}
 
 	private void addButtons() {
-		int numOfButtons = 5;
+		int numOfButtons = 4;
 		button = new ButtonInterfaceJane[numOfButtons];
-		Color[] buttonColors = {Color.green, Color.cyan, Color.magenta, Color.yellow, Color.orange};
+		Color[] buttonColors = {Color.green, Color.cyan, Color.magenta, Color.orange};
 		for(int i=0; i<numOfButtons; i++) {
 			final ButtonInterfaceJane b = getAButton();
 			button[i] = b;
 			b.setColor(buttonColors[i]);
-			b.setX(i+15);
-			b.setY(i);//make a circle
+			b.setX((int) Math.cos(i*(Math.PI/2)));
+			b.setY((int) Math.sin(i*(Math.PI/2)));//make a circle
 			b.setAction(new Action(){
 
 				public void act(){
@@ -161,7 +161,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 				b.dim();
 				b=sequence.get(i).getButton();
 				b.highlight();
-				int sleepTime = Math.abs((800-6*roundNumber)+1);
+				int sleepTime = Math.abs((800-6*roundNumber));
 				Thread blink = new Thread(new Runnable(){
 
 					public void run(){
