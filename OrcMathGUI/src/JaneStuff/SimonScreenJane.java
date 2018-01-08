@@ -12,7 +12,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 
 	private TextLabel label;
 	private ButtonInterfaceJane[] button;
-	private ProgressInterfaceJane progress;
+	//private ProgressInterfaceJane progress;
 	private ArrayList<MoveInterfaceJane> sequence;
 	private int roundNumber;
 	private boolean acceptingInput;
@@ -31,14 +31,14 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 		for(ButtonInterfaceJane j: button){ 
 		    viewObjects.add(j); 
 		}
-		progress = getProgress();
+//		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon Game!");
 		sequence = new ArrayList<MoveInterfaceJane>();
 		lastSelectedButton = -1;
 		sequence.add(randomMove());
 		sequence.add(randomMove());
 		roundNumber = 0;
-		viewObjects.add(progress);
+		//viewObjects.add(progress);
 		viewObjects.add(label);
 	}
 
@@ -54,16 +54,15 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	Placeholder until partner finishes implementation of MoveInterface
 	*/
 	private MoveInterfaceJane getMove(int bIndex) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
 		Placeholder until partner finishes implementation of ProgressInterface
-	 */
-	private ProgressInterfaceJane getProgress() {
-		 return null; 
-	}
+//	 */
+//	private ProgressInterfaceJane getProgress() {
+//		 return null; 
+//	}
 
 	private void addButtons() {
 		int numOfButtons = 4;
@@ -73,6 +72,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 			final ButtonInterfaceJane b = getAButton();
 			button[i] = b;
 			b.setColor(buttonColors[i]);
+			b.setOn(true);
 			b.setX((int) Math.cos(i*(Math.PI/2)));
 			b.setY((int) Math.sin(i*(Math.PI/2)));//make a circle
 			b.setAction(new Action(){
@@ -98,7 +98,8 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 							sequenceIndex++;
 						}
 						else
-							progress.gameOver();
+							//progress.gameOver();
+							gameOver();
 					}
 					if(sequenceIndex == sequence.size()){ 
 					    Thread nextRound = new Thread(SimonScreenJane.this); 
@@ -106,7 +107,14 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 					}
 				}
 
+
 			});
+		}
+	}
+	private void gameOver() {
+		changeText("GAVE OVER!!");
+		for(ButtonInterfaceJane b: button) {
+			b.setOn(false);
 		}
 	}
 
@@ -114,9 +122,9 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	Placeholder until partner finishes implementation of ButtonInterface
 	*/
 	private ButtonInterfaceJane getAButton() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ButtonJenny(getX(), getY(), getWidth(), getHeight(), "", null);
 	}
+	
 	private void changeText(String s) {
 		Thread blink = new Thread(new Runnable(){
 
@@ -144,8 +152,8 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 		acceptingInput=false;
 		roundNumber++;
 		sequence.add(randomMove());
-		progress.setRound(roundNumber);
-		progress.setSequenceSize(sequence.size());
+		//progress.setRound(roundNumber);
+		//progress.setSequenceSize(sequence.size());
 		changeText("Simon's turn");
 		changeText("");
 		playSequence();
