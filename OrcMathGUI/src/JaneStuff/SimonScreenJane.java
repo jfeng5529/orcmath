@@ -73,8 +73,8 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 			button[i] = b;
 			b.setColor(buttonColors[i]);
 			b.setOn(true);
-			b.setX((int) Math.cos(i*(Math.PI/2)));
-			b.setY((int) Math.sin(i*(Math.PI/2)));//make a circle
+			b.setX((int)50+30*Math.cos(i*(Math.PI/2)));
+			b.setY((int)50+30*Math.sin(i*(Math.PI/2)));//make a circle
 			b.setAction(new Action(){
 
 				public void act(){
