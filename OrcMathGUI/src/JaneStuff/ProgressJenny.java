@@ -11,7 +11,7 @@ public class ProgressJenny extends Component implements ProgressInterfaceJane{
 	private int sequenceSize;
 	private boolean progress;
 	
-	public ProgressJane(int x, int y, int w, int h) {
+	public ProgressJenny(int x, int y, int w, int h) {
 		super(x, y, w, h);
 		progress = true;
 		update();
