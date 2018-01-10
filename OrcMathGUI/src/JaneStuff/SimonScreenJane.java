@@ -12,7 +12,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 
 	private TextLabel label;
 	private ButtonInterfaceJane[] button;
-	//private ProgressInterfaceJane progress;
+	private ProgressInterfaceJane progress;
 	private ArrayList<ButtonInterfaceJane> sequence;
 	private int roundNumber;
 	private boolean acceptingInput;
@@ -28,11 +28,12 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		acceptingInput=false;
 		addButtons();
 		for(ButtonInterfaceJane j: button){ 
 		    viewObjects.add(j); 
 		}
-//		progress = getProgress();
+		progress = getProgress();
 		startButton = new Button(40, 340, 100, 30, "Start", new Action() {
 
 			@Override
@@ -51,7 +52,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 		sequence.add(randomMove());
 		sequence.add(randomMove());
 		roundNumber = 0;
-		//viewObjects.add(progress);
+		viewObjects.add(progress);
 	}
 	private void clearSequence() {
 		sequence = new ArrayList<ButtonInterfaceJane>();
@@ -59,7 +60,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 		sequence.add(randomMove());
 		sequence.add(randomMove());
 		sequence.add(randomMove());
-		roundNumber = 0;
+		roundNumber = -1;
 	}
 	private ButtonInterfaceJane randomMove() {
 		 int bNum = (int)(Math.random()*button.length);
@@ -79,9 +80,9 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	/**
 		Placeholder until partner finishes implementation of ProgressInterface
 //	 */
-//	private ProgressInterfaceJane getProgress() {
-//		 return null; 
-//	}
+	private ProgressInterfaceJane getProgress() {
+		 return new ProgressJenny(100, 300, 50, 50); 
+}
 
 	private void addButtons() {
 		int numOfButtons = 4;
@@ -103,7 +104,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 							public void run(){
 								b.highlight();
 								try {
-									Thread.sleep(800);
+									Thread.sleep(1000);
 									} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -117,7 +118,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 							sequenceIndex++;
 						}
 						else
-							//progress.gameOver();
+							progress.gameOver();
 							gameOver();
 					}
 					if(sequenceIndex == sequence.size()){ 
@@ -127,7 +128,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 				}
 
 
-			});
+			});button[i] = b;
 		}
 	}
 	private void gameOver() {
@@ -145,12 +146,12 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	}
 	
 	private void changeText(String s) {
+		label.setText(s);
 		Thread blink = new Thread(new Runnable(){
 
 			public void run(){
-				label.setText(s);
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(1500);
 					} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -171,8 +172,8 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 		acceptingInput=false;
 		roundNumber++;
 		sequence.add(randomMove());
-		//progress.setRound(roundNumber);
-		//progress.setSequenceSize(sequence.size());
+		progress.setRound(roundNumber);
+		progress.setSequenceSize(sequence.size());
 		changeText("Simon's turn");
 		changeText("");
 		playSequence();
@@ -182,11 +183,10 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	}
 	
 	private void playSequence() {
-		ButtonInterfaceJane b=sequence.get(0).getButton();
 		for(int i=0; i<sequence.size(); i++) {
-				b=sequence.get(i).getButton();
-				b.highlight();
-				int sleepTime = Math.abs((800-6*roundNumber));
+				sequence.get(i);
+				sequence.get(i).highlight();
+				int sleepTime = Math.abs(1500-6*roundNumber);
 				Thread blink = new Thread(new Runnable(){
 
 					public void run(){
@@ -199,8 +199,9 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 					}
 
 				});
-				b.dim();
+				sequence.get(i).dim();
 				blink.start();
+				sequence.get(i).dim();
 			}
 		}
 	}
