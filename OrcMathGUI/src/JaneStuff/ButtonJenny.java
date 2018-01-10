@@ -12,10 +12,11 @@ public class ButtonJenny extends Button implements ButtonInterfaceJane{
 	
 	private Color orginal;
 	private boolean on;
+	private String index;
 	
-	public ButtonJenny(int x, int y, int w, int h, String text, Action action) {
+	public ButtonJenny(int x, int y, int w, int h, String text, Action action , String index) {
 		super(x, y, w, h, "", null);
-		// TODO Auto-generated constructor stub
+		this.index=index;
 	}
 	
 	public void setOn(boolean o) {
@@ -31,7 +32,7 @@ public class ButtonJenny extends Button implements ButtonInterfaceJane{
 
 	@Override
 	public void dim() {
-		this.setForeground(orginal.darker());
+		this.setForeground(orginal);
 		update();
 	}
 
@@ -50,8 +51,8 @@ public class ButtonJenny extends Button implements ButtonInterfaceJane{
 
 }
 
-	@Override
-	public ButtonInterfaceJane getButton() {
-	return this;
+	public String getIndex(){
+		return index;
+		
 	}
 }
