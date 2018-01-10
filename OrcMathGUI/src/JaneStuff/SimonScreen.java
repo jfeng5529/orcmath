@@ -67,7 +67,7 @@ public class SimonScreen extends ClickableScreen implements Runnable {
 	private void changeText(String string) {
 		label.setText(string);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(700);
 		}catch(InterruptedException e){
 			e.printStackTrace();
 		}
@@ -97,7 +97,7 @@ public class SimonScreen extends ClickableScreen implements Runnable {
 	Placeholder until partner finishes implementation of ProgressInterface
 	*/
 	private ProgressInterfaceJane getProcess() {
-		return new ProgressJenny(0,0,800,200);
+		return new ProgressJenny(0,150,800,200);
 	}
 
 	private MoveInterfaceJane randomMove() {

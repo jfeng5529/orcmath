@@ -25,7 +25,7 @@ public class ButtonJenny extends Button implements ButtonInterfaceJane {
 
 	@Override
 	public void highlight() {
-		this.setBackground(Color.black);
+		this.setBackground(Color.darkGray);
 		update();
 	}
 
