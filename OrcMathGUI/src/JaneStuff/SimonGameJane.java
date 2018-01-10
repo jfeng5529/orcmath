@@ -13,7 +13,7 @@ public class SimonGameJane extends GUIApplication {
 
 	@Override
 	public void initScreen() {
-		SimonScreenJane screen = new SimonScreenJane(getWidth(), getHeight());
+		SimonScreen screen = new SimonScreen(getWidth(), getHeight());
 		setScreen(screen);
 
 	}

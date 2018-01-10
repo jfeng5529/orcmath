@@ -4,8 +4,8 @@ public class MoveJenny implements MoveInterfaceJane{
 
 	private ButtonInterfaceJane button;
 	
-	public MoveJane(ButtonInterfaceJane bIndex) {
-		this.button = bIndex;
+	public MoveJenny(ButtonInterfaceJane buttonInterfaceJane) {
+		this.button = buttonInterfaceJane;
 	}
 
 	@Override
