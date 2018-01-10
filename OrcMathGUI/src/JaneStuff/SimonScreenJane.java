@@ -13,11 +13,12 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	private TextLabel label;
 	private ButtonInterfaceJane[] button;
 	//private ProgressInterfaceJane progress;
-	private ArrayList<MoveInterfaceJane> sequence;
+	private ArrayList<ButtonInterfaceJane> sequence;
 	private int roundNumber;
 	private boolean acceptingInput;
 	private int sequenceIndex;
 	private int lastSelectedButton;
+	private Button startButton;
 	
 	public SimonScreenJane(int width, int height) {
 		super(width, height);
@@ -32,17 +33,35 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 		    viewObjects.add(j); 
 		}
 //		progress = getProgress();
-		label = new TextLabel(130,230,300,40,"Let's play Simon Game!");
-		sequence = new ArrayList<MoveInterfaceJane>();
+		startButton = new Button(40, 340, 100, 30, "Start", new Action() {
+
+			@Override
+			public void act() {
+				clearSequence();
+				label.setText("Let's play Simon Game!");
+				nextRound();
+			}
+		});
+		viewObjects.add(startButton);
+		label = new TextLabel(130,230,200,40,"Let's play Simon Game!");
+		viewObjects.add(label);
+		sequence = new ArrayList<ButtonInterfaceJane>();
 		lastSelectedButton = -1;
+		sequence.add(randomMove());
 		sequence.add(randomMove());
 		sequence.add(randomMove());
 		roundNumber = 0;
 		//viewObjects.add(progress);
-		viewObjects.add(label);
 	}
-
-	private MoveInterfaceJane randomMove() {
+	private void clearSequence() {
+		sequence = new ArrayList<ButtonInterfaceJane>();
+		lastSelectedButton = -1;
+		sequence.add(randomMove());
+		sequence.add(randomMove());
+		sequence.add(randomMove());
+		roundNumber = 0;
+	}
+	private ButtonInterfaceJane randomMove() {
 		 int bNum = (int)(Math.random()*button.length);
 		    while(bNum == lastSelectedButton){
 		        bNum = (int)(Math.random()*button.length);
@@ -53,8 +72,8 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	/**
 	Placeholder until partner finishes implementation of MoveInterface
 	*/
-	private MoveInterfaceJane getMove(int bIndex) {
-		return null;
+	private ButtonInterfaceJane getMove(int bIndex) {
+		return button[bIndex];
 	}
 
 	/**
@@ -73,8 +92,8 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 			button[i] = b;
 			b.setColor(buttonColors[i]);
 			b.setOn(true);
-			b.setX((int)50+30*Math.cos(i*(Math.PI/2)));
-			b.setY((int)50+30*Math.sin(i*(Math.PI/2)));//make a circle
+			b.setX((int) (80+50*Math.cos(i*(Math.PI/2))));
+			b.setY((int) (80+50*Math.sin(i*(Math.PI/2))));//make a circle
 			b.setAction(new Action(){
 
 				public void act(){
@@ -122,7 +141,7 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	Placeholder until partner finishes implementation of ButtonInterface
 	*/
 	private ButtonInterfaceJane getAButton() {
-		return new ButtonJenny(getX(), getY(), getWidth(), getHeight(), "", null);
+		return new ButtonJenny(80, 80, 50, 50, "", null);
 	}
 	
 	private void changeText(String s) {
@@ -163,10 +182,8 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 	}
 	
 	private void playSequence() {
-		ButtonInterfaceJane b=null;
+		ButtonInterfaceJane b=sequence.get(0).getButton();
 		for(int i=0; i<sequence.size(); i++) {
-			if(b!= null) {
-				b.dim();
 				b=sequence.get(i).getButton();
 				b.highlight();
 				int sleepTime = Math.abs((800-6*roundNumber));
@@ -182,9 +199,9 @@ public class SimonScreenJane extends ClickableScreen implements Runnable{
 					}
 
 				});
+				b.dim();
 				blink.start();
 			}
 		}
-		b.dim();
 	}
-}
+

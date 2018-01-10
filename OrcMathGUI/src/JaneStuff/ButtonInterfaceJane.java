@@ -17,6 +17,8 @@ public interface ButtonInterfaceJane extends Clickable {
 
 	void setOn(boolean b);
 
+	ButtonInterfaceJane getButton();
+
 
 
 
