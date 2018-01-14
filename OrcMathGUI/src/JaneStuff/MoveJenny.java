@@ -1,12 +1,15 @@
 package JaneStuff;
 
-public class MoveJenny implements MoveInterfaceJane {
+public class MoveJenny implements MoveInterfaceJane{
 
-	public MoveJenny() {
-		
+	private ButtonInterfaceJane button;
+	
+	public MoveJenny(ButtonInterfaceJane buttonInterfaceJane) {
+		this.button = buttonInterfaceJane;
 	}
 
+	@Override
 	public ButtonInterfaceJane getButton() {
-		return null;
+		return button;
 	}
 }
