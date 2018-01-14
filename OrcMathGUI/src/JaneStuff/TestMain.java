@@ -17,8 +17,8 @@ public class TestMain extends GUIApplication {
 	}
 
 	public static void main(String[] args) {
-		TestMain test = new TestMain(700,550);
-		Thread runner = new Thread(test);
+		TestMain test1 = new TestMain(700,550);
+		Thread runner = new Thread(test1);
 		runner.start();
 
 

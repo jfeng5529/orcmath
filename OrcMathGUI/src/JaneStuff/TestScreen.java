@@ -22,7 +22,7 @@ public class TestScreen extends ClickableScreen {
 	public TestScreen(int width, int height) {
 		super(width, height);
 		startSec=4;
-		gameSec =6;
+		gameSec=6;
 		score=0;
 		
 	}
